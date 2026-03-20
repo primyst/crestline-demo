@@ -14,7 +14,7 @@ const stats = [
 ];
 
 const partners = [
-  "Julius Berger", "CCECC Nigeria", "Dangote Group", "Julius Berger", "FBN Holdings", "Lafarge Africa"
+  "Northgate Holdings", "Pinnacle Infrastructure", "Vantage Capital Group", "Meridian Properties Ltd", "Arclight Investments", "Crestview Estates"
 ];
 
 const projects = [
