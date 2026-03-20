@@ -14,7 +14,12 @@ const stats = [
 ];
 
 const partners = [
-  "Northgate Holdings", "Pinnacle Infrastructure", "Vantage Capital Group", "Meridian Properties Ltd", "Arclight Investments", "Crestview Estates"
+  { color: "#2D4A6B", shape: "circle", letter: "N" },
+  { color: "#8B4513", shape: "square", letter: "P" },
+  { color: "#1B5E20", shape: "diamond", letter: "V" },
+  { color: "#4A148C", shape: "circle", letter: "M" },
+  { color: "#BF360C", shape: "square", letter: "A" },
+  { color: "#006064", shape: "diamond", letter: "C" },
 ];
 
 const projects = [
@@ -313,16 +318,38 @@ export default function CrestlineDevelopment() {
       </section>
 
       {/* Partners */}
-      <section className="sans bg-stone-100 py-10 overflow-hidden border-y border-stone-200">
-        <p className="sans text-[10px] tracking-[0.3em] text-stone-400 uppercase text-center mb-6">Trusted By</p>
-        <div className="flex overflow-hidden">
-          <div className="partner-track whitespace-nowrap">
-            {[...partners, ...partners].map((p, i) => (
-              <span key={i} className="serif text-stone-400 text-lg font-normal italic px-8 border-r border-stone-300 last:border-0">{p}</span>
-            ))}
+<section className="sans bg-stone-100 py-10 overflow-hidden border-y border-stone-200">
+  <p className="sans text-[10px] tracking-[0.3em] text-stone-400 uppercase text-center mb-6">Trusted By</p>
+  <div className="flex overflow-hidden">
+    <div className="partner-track whitespace-nowrap flex items-center">
+      {[...partners, ...partners].map((p, i) => (
+        <div key={i} className="flex items-center gap-3 px-8 border-r border-stone-300 last:border-0 shrink-0">
+          <div
+            className="flex items-center justify-center shrink-0"
+            style={{
+              width: "36px",
+              height: "36px",
+              background: p.color,
+              borderRadius: p.shape === "circle" ? "50%" : p.shape === "diamond" ? "4px" : "6px",
+              transform: p.shape === "diamond" ? "rotate(45deg)" : "none",
+            }}
+          >
+            <span
+              className="serif font-bold text-white text-sm"
+              style={{ transform: p.shape === "diamond" ? "rotate(-45deg)" : "none" }}
+            >
+              {p.letter}
+            </span>
           </div>
+          <div
+            className="h-5 shrink-0"
+            style={{ width: "60px", background: p.color, opacity: 0.15, borderRadius: "3px" }}
+          />
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Projects */}
       <section ref={projectsRef} className="px-6 py-24 scroll-mt-20">
