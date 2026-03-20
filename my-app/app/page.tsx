@@ -1,7 +1,8 @@
 "use client"
 
+
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, ArrowUpRight, Phone, Mail, MapPin, ChevronRight, Award, Clock, Building2, Users, CheckCircle, MessageCircle, Send, Shield, Star } from "lucide-react";
+import { Menu, X, ArrowUpRight, Phone, Mail, MapPin, ChevronRight, Award, Clock, Building2, Users, CheckCircle, MessageCircle, Send, Shield, Star, Landmark, Droplets, GraduationCap, HeartPulse, Factory } from "lucide-react";
 
 const navLinks = ["Projects", "Services", "Process", "Guarantee", "Contact"] as const;
 type NavLink = typeof navLinks[number];
@@ -13,13 +14,13 @@ const stats = [
   { value: 0, suffix: " delays", label: "Penalty Claims Filed" },
 ];
 
-const partners = [
-  { color: "#2D4A6B", shape: "circle", letter: "N" },
-  { color: "#8B4513", shape: "square", letter: "P" },
-  { color: "#1B5E20", shape: "diamond", letter: "V" },
-  { color: "#4A148C", shape: "circle", letter: "M" },
-  { color: "#BF360C", shape: "square", letter: "A" },
-  { color: "#006064", shape: "diamond", letter: "C" },
+const industries = [
+  { icon: Building2, label: "Real Estate" },
+  { icon: Landmark, label: "Banking & Finance" },
+  { icon: Droplets, label: "Oil & Gas" },
+  { icon: GraduationCap, label: "Education" },
+  { icon: HeartPulse, label: "Healthcare" },
+  { icon: Factory, label: "Manufacturing" },
 ];
 
 const projects = [
@@ -181,7 +182,7 @@ export default function CrestlineDevelopment() {
         .project-card:hover img { transform: scale(1.05); }
         .chat-messages { scrollbar-width: none; }
         .chat-messages::-webkit-scrollbar { display: none; }
-        .partner-track { display: flex; gap: 3rem; animation: scroll 20s linear infinite; }
+        .partner-track { display: flex; gap: 0; animation: scroll 20s linear infinite; }
         @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         .hero-img { animation: slowzoom 12s ease-in-out infinite alternate; }
         @keyframes slowzoom { from { transform: scale(1); } to { transform: scale(1.06); } }
@@ -257,7 +258,7 @@ export default function CrestlineDevelopment() {
           </div>
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((l) => (
-              <button key={l} onClick={() => scrollTo(l)} className="sans text-[11px] tracking-widest text-stone-500 hover:text-[#1c1c1c] transition-colors uppercase font-medium cursor-pointer bg-transparent border-none">{l}</button>
+              <button key={l} onClick={() => scrollTo(l)} className="sans text-[11px] tracking-widests text-stone-500 hover:text-[#1c1c1c] transition-colors uppercase font-medium cursor-pointer bg-transparent border-none">{l}</button>
             ))}
             <button onClick={() => scrollTo("Contact")} className="sans bg-[#c9a96e] text-[#1c1c1c] text-[11px] tracking-widest uppercase font-semibold px-5 py-2.5 hover:bg-[#1c1c1c] hover:text-white transition-colors duration-200 cursor-pointer">
               Request Site Visit
@@ -317,39 +318,22 @@ export default function CrestlineDevelopment() {
         </div>
       </section>
 
-      {/* Partners */}
-<section className="sans bg-stone-100 py-10 overflow-hidden border-y border-stone-200">
-  <p className="sans text-[10px] tracking-[0.3em] text-stone-400 uppercase text-center mb-6">Trusted By</p>
-  <div className="flex overflow-hidden">
-    <div className="partner-track whitespace-nowrap flex items-center">
-      {[...partners, ...partners].map((p, i) => (
-        <div key={i} className="flex items-center gap-3 px-8 border-r border-stone-300 last:border-0 shrink-0">
-          <div
-            className="flex items-center justify-center shrink-0"
-            style={{
-              width: "36px",
-              height: "36px",
-              background: p.color,
-              borderRadius: p.shape === "circle" ? "50%" : p.shape === "diamond" ? "4px" : "6px",
-              transform: p.shape === "diamond" ? "rotate(45deg)" : "none",
-            }}
-          >
-            <span
-              className="serif font-bold text-white text-sm"
-              style={{ transform: p.shape === "diamond" ? "rotate(-45deg)" : "none" }}
-            >
-              {p.letter}
-            </span>
+      {/* Industries */}
+      <section className="sans bg-stone-100 py-10 overflow-hidden border-y border-stone-200">
+        <p className="sans text-[10px] tracking-[0.3em] text-stone-400 uppercase text-center mb-8">Industries We've Built For</p>
+        <div className="flex overflow-hidden">
+          <div className="partner-track whitespace-nowrap flex items-center">
+            {[...industries, ...industries].map(({ icon: Icon, label }, i) => (
+              <div key={i} className="flex flex-col items-center gap-2 px-10 border-r border-stone-200 last:border-0 shrink-0">
+                <div className="w-10 h-10 bg-white border border-stone-200 flex items-center justify-center shadow-sm">
+                  <Icon size={18} className="text-[#c9a96e]" strokeWidth={1.5} />
+                </div>
+                <span className="sans text-[10px] tracking-widest text-stone-400 uppercase">{label}</span>
+              </div>
+            ))}
           </div>
-          <div
-            className="h-5 shrink-0"
-            style={{ width: "60px", background: p.color, opacity: 0.15, borderRadius: "3px" }}
-          />
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* Projects */}
       <section ref={projectsRef} className="px-6 py-24 scroll-mt-20">
@@ -597,10 +581,10 @@ export default function CrestlineDevelopment() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="serif text-stone-600 text-sm">CRESTLINE DEVELOPMENT GROUP · Est. 2012</p>
           <p className="sans text-[10px] text-stone-700 tracking-widest uppercase">
-            Demo by <span className="text-[#c9a96e]">Primyst</span> · primyst.com
+            Demo by <span className="text-[#c9a96e]">Primyst</span>
           </p>
         </div>
       </footer>
     </div>
   );
-   }
+}
